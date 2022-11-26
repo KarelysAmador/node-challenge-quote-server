@@ -1,4 +1,5 @@
 const { response } = require("express");
+
 // server.js
 // This is where your node app starts
 
@@ -14,10 +15,10 @@ const quotes = require("./quotes.json");
 //   /quotes            - Should return all quotes (json)
 //   /quotes/random     - Should return ONE quote (json)
 app.get("/", function (request, response) {
-  response.send("Neill's Quote Server!  Ask me for /quotes/random, or /quotes");
+  response.send("Karelys's Quote Server!  Ask me for /quotes/random, or /quotes");
 });
 
-//START OF YOUR CODE...
+//START OF YOUR CODE..
 
 app.get('/quotes', function(request, response) {
   response.send(quotes)
@@ -28,14 +29,31 @@ app.get('/quotes/random', function(request, response) {
   response.send(randomQuotes)
 });
 
+
+app.get("/quotes/search", function (request, response) { 
+  const searchQuery = request.query.term;
+  response.send(searchQuery);
+
+  quotes.forEach((element) => {
+    console.log(element.quote)
+  })
+
+});
+  
+
+/*pickFromArray obtienes un valor al azar del array
+todo lo que sea devolver datos es .get*/
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
 //example: pickFromArray([1,2,3,4]), or
 //example: pickFromArray(myContactsArray)
 //
+
 function pickFromArray(arr) {
-  return arr[Math.floor(Math.random() * arr.length)];
+  const random =Math.random() * arr.length;
+  const randomIndex = Math.floor(random);
+  return arr[randomIndex];
 }
 
 //Start our server so that it listens for HTTP requests!
