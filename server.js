@@ -1,4 +1,9 @@
 const { response } = require("express");
+const lodash = require('lodash');
+
+const cors = require('cors');
+app.use(cors())
+
 
 // server.js
 // This is where your node app starts
