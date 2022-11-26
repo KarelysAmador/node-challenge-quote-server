@@ -14,6 +14,7 @@ const quotes = require("./quotes.json");
 //   /                  - Return some helpful welcome info (text)
 //   /quotes            - Should return all quotes (json)
 //   /quotes/random     - Should return ONE quote (json)
+
 app.get("/", function (request, response) {
   response.send("Karelys's Quote Server!  Ask me for /quotes/random, or /quotes");
 });
@@ -29,20 +30,34 @@ app.get('/quotes/random', function(request, response) {
   response.send(randomQuotes)
 });
 
-
-app.get("/quotes/search", function (request, response) { 
-  const searchQuery = request.query.term;
-  response.send(searchQuery);
-
+app.get('/quotes/search', (request, response) => {
   quotes.forEach((element) => {
-    console.log(element.quote)
-  })
 
-});
-  
+  const termQuery = request.query.term.toLowerCase();
+  const search = quotes.filter((element) => element.quote.toLowerCase().includes(termQuery));
 
+  response.send(search);
+})
+})
+
+/*como lo hizo el profe
+app.get ("/quotes/Search", function (request, response)
+{
+  let searchQuery =request.query.term;
+  console.log(searchQuery);
+
+let result =   []
+  For (const obj of quotes)  {
+    if (obj.quote.toLowerCase().includes(searchQuery.toLowerCase())){
+      result.push(obj);
+    }
+  }
+  response.send (result)
+})
+ */
 /*pickFromArray obtienes un valor al azar del array
 todo lo que sea devolver datos es .get*/
+
 //...END OF YOUR CODE
 
 //You can use this function to pick one element at random from a given array
