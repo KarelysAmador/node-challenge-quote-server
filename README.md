@@ -143,6 +143,7 @@ The algorithm should:
 As with `/quotes`, your new route should return a JSON array of quotes. If you find none that match, it should return an empty array, `[]`.
 
 Remember that each quote is a `property` of each object of the array
+
 ```
 [
   {
@@ -232,4 +233,3 @@ and
 `app.use(cors())`
 
 Read more about CORS in Express [here](https://expressjs.com/en/resources/middleware/cors.html).
-
